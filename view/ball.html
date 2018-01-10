@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="../public/css/animate.css">
+<style type="text/css">
+	.target {
+		width: 200px;
+		height: 120px;
+	    filter: url("#goo");
+	    margin: auto;
+	}
+	.share {
+	    display: block;
+	    width: 64px;
+	    line-height: 64px;
+	    background-color: #cd0000;
+	    color: #fff;
+	    border-radius: 50%;
+	    margin: auto;
+	    position: relative;
+	    z-index: 1;
+	    text-align: center;
+	}
+	[type="checkbox"] {
+	    position: absolute;
+	    clip: rect(0 0 0 0);
+	}
+	[class*="icon-share-"] {
+	    position: absolute;
+	    width: 48px;
+	    height: 48px;
+	    background-color: #cd0000;
+	    border-radius: 50%;
+	    transition: transform .5s;
+	    top:16px;
+	    left: 0;
+	    right: 0;
+	    margin: auto;
+	    transition: transform .5s;
+	    transform: scale(0.5);
+	    text-align: center;
+	    line-height: 48px;
+	    color: #fff;
+	}
+	:checked + .target .icon-share-weibo { 
+	    transform: scale(1) translate(-70px, 75px);    
+	}
+	:checked + .target .icon-share-wechat {  
+	    transform: scale(1) translate(0, 105px);    
+	}
+	:checked + .target .icon-share-qq {
+	    transform: scale(1) translate(70px, 75px);    
+	}
+	:checked + .target .share {
+	    animation: pulse 1s;
+	}
+	@keyframes scaling{
+		from {
+			transform: scale3d(1,1,1);
+		}to{
+			transform: scale3d(0.1,0.1,0.1);
+		}
+
+	}
+	@keyframes wordLoading{
+		0%{
+			width: 0;
+			border-right: 1px solid #fd1111;
+			
+		}100%{
+			width: 100%;
+			border-right: 0;
+			
+		}
+	}
+	.box{
+		background: #cd0000;
+		/* animation: scaling 2s linear;
+		animation-iteration-count: infinite */
+	}
+	.word-load{
+		width: 0;
+		height: 24px;
+		line-height: 24px;
+		font-size: 16px;
+		border-right: 0;
+		color: #666;
+		animation: wordLoading 10s linear  1;
+		animation-fill-mode:forwards;
+		overflow: hidden;
+	}
+	
+</style>
+<body>
+	<svg width="0" height="0">
+	  <defs>
+	    <filter id="goo">
+	      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+	      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+	      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+	    </filter>
+	  </defs>
+	</svg>
+	<input type="checkbox" id="share">
+	<div class="target">
+	    <label class="share" for="share">分享</label>
+	    <span class="icon-share-weibo">微博<!-- <img src="weibo.png"> --></span>
+	    <span class="icon-share-wechat">微信<!-- <img src="wechat.png"> --></span>
+	    <span class="icon-share-qq">QQ<!-- <img src="qq.png"> --></span>
+	</div>
+	<div class="box">
+		<img src="../public/image/img7.jpg" alt="">
+	</div>
+	<div class="word-load">所有动画属性的简写属性，除了 animation-play-state 属性。规定 @keyframes 动画的名称。</div>
+</body>
+</html>

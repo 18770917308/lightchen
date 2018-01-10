@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn" type="button">is button</button>
+	<div id="content"></div>
+	<script src="../public/js/jquery-1.12.4.js"></script>
+	<script>
+	var obj1 = {
+		type:'Jack',
+		test: function(){
+			$("#content").append(this.type+" +");
+		}
+	}
+	var obj2 = {
+		type:'Mary',
+		test: function(){
+			$("#content").append(this.type+" +");
+		}
+	}
+	//$.proxy() 接受一个已有函数，返回一个带特定上下文的新函数
+	//$(selector).proxy(context,name) 
+	//$(selector).proxy(function,context)
+	// 参数	描述
+	// function	要被调用的已有的函数。
+	// context	函数所在的对象的名称。
+	// name	已有的函数，其上下文将被改变（应该是 context 对象的属性）。
+	var obj2Click = $.proxy(obj2.test,obj2);
+	$("#btn").on('click',$.proxy(obj1.test,obj1))//Jack
+			 .on('click',obj2Click)//Mary
+			 .on('click',$.proxy(obj1,'test'))//Jack
+			 .on('click',obj1.test)//button
+			 .on('click',$.proxy(obj2.test,obj1));//Jack
+			 //改变上下文this指向传入函数
+	console.log($("#btn").get(0).parentNode);
+	</script>
+</body>
+</html>

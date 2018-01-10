@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>deferred对象</title>
+</head>
+<body>
+	<script src="../public/js/jquery.min.js"></script>
+	<script>
+		var wait = function(){
+			var dtd = $.Deferred();
+			var task = function(){
+				alert("执行完毕！");
+				dtd.resolve();//改变Deferred对象的执行状态
+			};
+			setTimeout(task,4000);
+			return dtd.promise();//返回一个promise对象
+		}
+		/*var d = wait(dtd);//新建一个d对象 改变为对这个对象进行操作*/
+		$.when(wait())
+			.done(function(){
+				alert("成功了！");
+			})
+			.fail(function(){
+				alert("失败了");
+			});
+			//d.resolve();
+	</script>
+</body>
+</html>

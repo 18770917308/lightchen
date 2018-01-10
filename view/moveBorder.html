@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>流动边框</title>
+	<style type="text/css">
+		/*参考来源 http://www.qdfuns.com/notes/25583/0275db020eef39e51278fa334b24543b.html
+			http://www.lanrenzhijia.com/demos/39/3989/demo/
+		*/
+		.box{
+			width: 300px;
+			height: 300px;
+			position: relative;
+			margin: 50px auto;
+			z-index: 3;
+			background: #f1f1f1;
+		}
+		.box:hover::before,.box:hover::after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right:0;
+			background: none;
+			margin: -10px;
+			border:2px solid #edb100;
+			animation: moveBorder 4s linear infinite;
+			/* clip: rect(0 2px 320px 0); */
+			z-index: -1;
+		}
+		.box:hover::after{
+			animation-delay: -2s;
+		}
+		@keyframes moveBorder{
+			0%,100%{
+				/*clip(top right bottom left)*/
+				clip: rect(0 320px 2px 0);
+			}25%{
+				clip: rect(0 320px 320px 318px);
+			}50%{
+				clip: rect(318px 320px 320px 0);
+			}75%{
+				clip: rect(0 2px 320px 0);
+			}
+
+		}
+		@-webkit-keyframes moveBorder{
+			0%,100%{
+				/*clip(top right bottom left)*/
+				clip: rect(0 320px 2px 0);
+			}25%{
+				clip: rect(0 320px 320px 318px);
+			}50%{
+				clip: rect(318px 320px 320px 0);
+			}75%{
+				clip: rect(0 2px 320px 0);
+			}
+		}
+		.line-1{
+			margin: 50px auto;
+			width: 300px;
+			height:300px;
+			background: #FB8900;
+			position: relative;
+		}
+		.line-1::before{
+			content: '';
+			position: absolute;
+			border-top: 2px solid #C2E05D;
+			border-bottom: 2px solid #C2E05D;
+			transform: scale(0,1);
+			top: 25px;
+			bottom: 25px;
+			left: 20px;
+			right: 20px;
+			transition: all .9s;
+			-webkit-transform-origin:0 0;
+			transform-origin:0 0;
+			opacity: .5; 
+		}
+		.line-1::after{
+			content: '';
+			position: absolute;
+			border-left: 2px solid #C2E05D;
+			border-right: 2px solid #C2E05D;
+			transform: scale(1,0);
+			top: 20px;
+			bottom: 20px;
+			left: 25px;
+			right:25px;
+			transition: all .9s;
+			-webkit-transform-origin:100% 0;
+			transform-origin:100% 0;
+			opacity: .5
+		}
+		.line-1:hover::before,.line-1:hover::after{
+			transform: scale(1);
+			transition: all .9s;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<!--实现思路：①使用before伪类，用margin:负值撑开,设置border
+				  ②使用clip进行裁剪 如clip:rect(0 320px 2px 0)为一宽320px 高2px条形区域
+	-->
+	<div class="box"></div>
+	<!--实现思路：①主要在于transform:scale(x,y)的运用，x：水平方向缩放倍数，y：垂直方向缩放倍数
+					初始化垂直方向的border的y为0，x为1;水平方向的borderx为0，y为1-->
+	<div class="line-1"></div>
+</body>
+</html>

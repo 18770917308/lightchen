@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.slide-wrap{
+			width: 500px;
+			height: 500px;
+			margin-top: 50px;
+		}
+		.slide-item{display: none}
+		.slide-item img{
+			width: 500px;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+<div class="slide-wrap">
+	<div class="slide-item" style="display: block;"><img src="image/img1.jpg" alt=""></div>
+	<div class="slide-item"><img src="image/img2.jpg" alt=""></div>
+	<div class="slide-item"><img src="image/img3.jpg" alt=""></div>
+</div>
+<p class="test1">get this plugins bigSize!</p>
+<script src="js/jquery.min.js"></script>
+<script src="js/imgShow.js"></script>
+	<script>
+	$.fn.showImg($(".slide-item"),1000,3);
+	$(".test1").bigSize({
+		color:'#666666',
+		fontSize:'24px'
+	});
+	/*var count = 0;
+	function timer(){
+		
+		++count;
+		console.log(count);
+		setTimeout(timer,1000);
+	}
+	timer();*/
+		
+		/*var lis = document.getElementsBytagName("li");
+		for(var i=0;i<lis.length;i++){
+			lis[i].onmouseover = function(){
+				alert(i);
+			}
+		}
+		//事实上上面并不会返回每一个的index值 只会返回最后一个值 闭包允许内层函数引用父函数中的变量，但是该变量是最终值
+		//解决方法1
+		for(var i = 0;i<lis.length;i++){
+			(function(index){
+				lis[index].onmouseover = function(){
+					alert(index);
+				}
+			})(i);
+		}
+		//方法2
+		function eventListener(lis,index){
+			lis.onmouseover = function(){
+				alert(index);
+			}
+		}
+		var list = document.getElementsBytagName("li");
+		for(var i = 0;i<list.length;i++){
+			eventListener(list[i],i)
+		}*/
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<span>1</span>
+	<span>2</span>
+	<span>3</span>
+	<script src="../public/js/jquery-3.2.1.js"></script>
+	<script>
+		//$('span').eq(0).css('fontSize','20px').end().fadeOut(2000);
+		console.log($().pushStack($('span')));
+		var a = [1,2,3];	
+		$("span").slice(1);
+		console.log($.isEmptyObject('1'));
+		console.log($.type());
+		var dog = [
+			{name:'1'}
+		];
+		$("span").each(function(){
+			console.log($(this).text());
+		});
+		var arr1 = [1,2,3],arr2=[4,5],arr3=[];
+		console.log(arr3.push.call(arr1,arr2));
+		console.log(arr1);
+	</script>
+</body>
+</html>
